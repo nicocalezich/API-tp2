@@ -7,7 +7,8 @@ const mongoclient = require('mongodb').MongoClient;
 //const uri = "mongodb+srv://admin:44w7FojbQL21smUn@cluster0.3bm3a.azure.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 //const uri = process.env.MONGO_URI;
 
-const uri = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false"
+const uri = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&directConnection=true&ssl=false" 
+
 
 const client = new mongoclient(uri);
 

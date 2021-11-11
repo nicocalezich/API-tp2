@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
-const { createUser } = require('../controllers/users.controller')
+const { insertProduct } = require('../controllers/product.controller.js')
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('Respuesta desde /users');
+  res.send('Respuesta desde /products');
 });
 
-router.post('/', createUser)
+router.post('/', insertProduct)
 
 module.exports = router;

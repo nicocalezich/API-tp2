@@ -1,7 +1,7 @@
-const userRepository = require('../data/users')
+const productRepository = require('../data/products')
 
 module.exports = {
-    createUser: (user) => {
-      return userRepository.createUser(user)
+    productService: (product) => {
+      return productRepository.insertProduct(product)
     }
   }
