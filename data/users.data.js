@@ -11,25 +11,23 @@ async function createUser(user){
         ){
             throw({message: "Username, Password and Dni are required", status: 400});
         }
-    else{
         user.password = await bcrypt.hash(user.password, 8);
         const result = await connectiondb.db('api-db')
                             .collection('users')
                             .insertOne(user);
         return result;
-    }
 }
 
-async function findByDni(dni){
+async function findByDni(user){
     const connectiondb = await connection.getConnection();
-    const user = await connectiondb.db('sample_betp2')
+    const searchedUser = await connectiondb.db('api-db')
                         .collection('usuarios')
-                        .findOne({dni: dni});
-    if(!user){
+                        .findOne({dni: user.dni});
+    if(!searchedUser){
         throw new Error('Credenciales no validas');
     }
 
-    return user;
+    return searchedUser;
 }
 
-module.exports = {createUser};
+module.exports = {createUser, findByDni};

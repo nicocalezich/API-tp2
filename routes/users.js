@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { createUser } = require('../controllers/users.controller')
+const { createUser, findByDni } = require('../controllers/users.controller')
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('Respuesta desde /users');
-});
+router.get('/', findByDni);
 
 router.post('/', createUser)
 

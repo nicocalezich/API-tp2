@@ -10,4 +10,14 @@ const createUser = async (req, res) => {
     }
 }
 
-module.exports = { createUser }
+const findByDni = async (req, res) => {
+    try{
+        const result = await userService.findUser(req.body)
+        res.send(result)
+    }
+    catch (error){
+        res.status(error.status).send(error.message)
+    }
+}
+
+module.exports = { createUser, findByDni }
