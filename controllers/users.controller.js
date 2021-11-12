@@ -12,7 +12,7 @@ const createUser = async (req, res) => {
 
 const findByDni = async (req, res) => {
     try{
-        const result = await userService.findUser(req.body)
+        const result = await userService.findByDni(req.params.dni)
         res.send(result)
     }
     catch (error){

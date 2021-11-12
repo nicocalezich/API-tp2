@@ -5,8 +5,8 @@ module.exports = {
       return userRepository.createUser(user)
     },
 
-    findByDni: (user) => {
-      return userRepository.findByDni(user)
+    findByDni: (dni) => {
+      return userRepository.findByDni(dni)
     }
 
   }
