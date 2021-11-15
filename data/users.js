@@ -25,7 +25,6 @@ async function getUser(dni){
     if (!user){
         throw({message: "User does not exist", status: 404}) 
     }
-
     return user
 }
 
