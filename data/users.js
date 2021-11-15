@@ -5,6 +5,7 @@ const bcrypt = require('bcryptjs');
 
 async function createUser(user){
     const connectiondb = await connection.getConnection();
+
     if (!user.username || !user.password || !user.dni) throw({message: "Username, Password and Dni are required", status: 400})
     if (await findByDni(user.dni)) throw({message: "User already exists", status: 400})
     if (user.username.length < 5 || user.username.length > 15) throw({message: "Invalid username, min 5 characters and max 15 characters", status: 400})
@@ -15,7 +16,17 @@ async function createUser(user){
     const result = await connectiondb.db('api-db')
                         .collection('users')
                         .insertOne(user);
-    return result;
+    return {message: "User created", status: 201};
+}
+
+async function getUser(dni){
+    const user = await findByDni(dni)
+
+    if (!user){
+        throw({message: "User does not exist", status: 404}) 
+    }
+
+    return user
 }
 
 async function findByDni(dni){
@@ -23,10 +34,7 @@ async function findByDni(dni){
     const searchedUser = await connectiondb.db('api-db')
                         .collection('users')
                         .findOne({dni: dni});
-    // if (!searchedUser){
-    //     throw({message: "User not found", status: 404})
-    // }
     return searchedUser;
 }
 
-module.exports = {createUser, findByDni};
+module.exports = {createUser, getUser};

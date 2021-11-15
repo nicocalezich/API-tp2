@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const { createUser, findByDni } = require('../controllers/users.controller')
+const { createUser, getUser } = require('../controllers/users')
 
 /* GET users listing. */
-router.get('/:dni', findByDni);
+router.get('/:dni', getUser);
 
 router.post('/', createUser)
 
