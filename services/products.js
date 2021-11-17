@@ -2,6 +2,7 @@ const productRepository = require('../data/products')
 
 module.exports = {
     productService: (product) => {
-      return productRepository.insertProduct(product)
+      const newProduct = ProductFactory.create(product);
+      return productRepository.insertProduct(newProduct)
     }
   }
