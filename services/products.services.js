@@ -1,5 +1,5 @@
-const productRepository = require('../data/products')
-const ProductFactory = require('../factories/product.factory')
+const productRepository = require('../data/products.data')
+const ProductFactory = require('../factories/products.factory')
 
 module.exports = {
     productService: (product) => {

@@ -5,8 +5,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const port = 8080
 
-const usersRouter = require('./routes/users');
-const productosRouter = require('./routes/products');
+const usersRouter = require('./routes/users.routes');
+const productosRouter = require('./routes/products.routes');
 
 const app = express();
 
@@ -17,10 +17,10 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
-app.use('/productos', productosRouter);
+app.use('/products', productosRouter);
 
 app.listen(port, () => {
-  console.log(`Escuchando en puerto ${port}`)
+  console.log(`App running at port: ${port}`)
 })
 
 module.exports = app;

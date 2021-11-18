@@ -1,4 +1,4 @@
-const userService = require('../services/users')
+const userService = require('../services/users.services')
 
 const createUser = async (req, res) => {
     try{
@@ -6,7 +6,7 @@ const createUser = async (req, res) => {
         res.status(result.status).send(result.message)
     }
     catch (error){
-        res.status(error.status).send(error.message)
+        res.status(400).send(error.message)
     }
 }
 
