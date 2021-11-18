@@ -6,7 +6,7 @@ const logger = require('morgan');
 const port = 8080
 
 const usersRouter = require('./routes/users');
-// const productosRouter = require('./routes/productos');
+const productosRouter = require('./routes/products');
 
 const app = express();
 
@@ -17,7 +17,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
-// app.use('/productos', productosRouter);
+app.use('/productos', productosRouter);
 
 app.listen(port, () => {
   console.log(`Escuchando en puerto ${port}`)

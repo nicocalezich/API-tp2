@@ -23,6 +23,7 @@ async function getConnection(){
             throw new Error('problemas al conectarse con mongo');
         }
     }
+    console.log(instance)
     return instance;
 }
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { insertProduct } = require('../controllers/product.controller.js')
+const { insertProduct } = require('../controllers/products.js')
 
 /* GET users listing. */
 router.get('/', function(_req, res, next) {

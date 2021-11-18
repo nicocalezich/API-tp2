@@ -1,7 +1,7 @@
 const mongodb = require('mongodb');
 const connection = require('./dbconnection');
 const bcrypt = require('bcryptjs');
-const ProductFactory = require('../factories/product.factory')
+
 
 
 async function insertProduct(product){
@@ -10,6 +10,7 @@ async function insertProduct(product){
     const result = await connectiondb.db('api-db')
                         .collection('products')
                         .insertOne(product);
+    console.log("creo usuario")
     return result;
 }
 

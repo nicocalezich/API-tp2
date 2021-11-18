@@ -1,12 +1,13 @@
-const productService = require('../services/product.service')
+const productService = require('../services/products')
 
 
 const insertProduct = async (req, res) => {
     try {
+        console.log("entro al controller")
         const result = await productService.insertProduct(req.body);
         res.send(result);    
     } catch (error) {
-        console.log(error);
+        res.send(error);
     }
     
 }
