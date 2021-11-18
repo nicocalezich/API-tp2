@@ -4,7 +4,7 @@ const { insertProduct } = require('../controllers/products.controller.js')
 
 /* GET users listing. */
 router.get('/', function(_req, res, _next) {
-  res.send('Respuesta desde /products');
+  res.send('get de productos');
 });
 
 router.post('/', insertProduct)

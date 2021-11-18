@@ -26,8 +26,7 @@ module.exports = {
       const {error, value} = schema.validate({username: user.username, password: user.password, dni: user.dni, isAdmin: user.isAdmin})
 
       if(!error){
-        const createdUser = userFactory.create(value)
-        return {message: createdUser, status: 201}
+        return userFactory.create(value)
       }
       else{
         const message = error.details[0].message
