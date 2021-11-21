@@ -1,26 +1,34 @@
 const userRepository = require('../data/users.data')
 const userFactory = require('../factories/users.factory')
-// const Joi = require("@hapi/joi")
 const validateUsers = require('../validations/user.validations')
 
 module.exports = {
-  createUser: (user) => {
+  createUser: async (user) => {
 
       const validation = validateUsers.validateUser(user)
 
-      if(!validation.error){
-        const newUser = userFactory.create(validation.value)
-        return userRepository.createUser(newUser)
+      const existingUser = await userRepository.findByDni(validation.value.dni)
+
+      if(validation.error || existingUser){
+        const message = validation.error? validation.error.details[0].message : `User ${existingUser.dni} already exists`
+        const status = 400
+        throw({message, status})
       }
-      
-      const message = validation.error.details[0].message
-      const status = 400
-      throw({message, status})
-      
+
+      const newUser = userFactory.create(validation.value)
+      const createdUser = userRepository.insertUser(newUser)
+      return {message: `User ${createdUser.dni} created`, status: 201};
+
     },
 
-    getUser: (dni) => {
-      return userRepository.getUser(dni)
+    getUser: async (dni) => {
+      const user = await userRepository.findByDni(dni)
+      if (!user){
+        const message = `User ${dni} not found`
+        const status = 404
+        throw({message, status})
+      }
+      return user
     }
 
   }
