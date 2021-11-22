@@ -1,3 +1,4 @@
+require('dotenv').config()
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -7,6 +8,7 @@ const port = 8080
 
 const usersRouter = require('./routes/users.routes');
 const productosRouter = require('./routes/products.routes');
+const verifyToken = require('./middleware/verifyToken');
 
 const app = express();
 
@@ -17,7 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
-app.use('/products', productosRouter);
+app.use('/products', verifyToken, productosRouter);
 
 app.listen(port, () => {
   console.log(`App running at port: ${port}`)

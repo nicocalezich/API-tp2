@@ -20,4 +20,22 @@ const getUser = async (req, res) => {
     }
 }
 
-module.exports = { createUser, getUser}
+const login = async (req, res) => {
+    try{
+        const isAdmin = true
+        const username = req.body.username
+        const password = req.body.password
+        const token = await userService.login({username, password, isAdmin})
+        res.header('auth-token', token).json({
+            error: null,
+            data: {token}
+        })
+    }
+    catch (error){
+        res.status(400).send(error.message)
+    }
+}
+
+
+
+module.exports = { createUser, getUser, login}

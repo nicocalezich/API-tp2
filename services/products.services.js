@@ -3,9 +3,22 @@ const ProductFactory = require('../factories/products.factory')
 const validateProducts = require('../validations/product.validations')
 
 module.exports = {
+
+  getProduct: async (id) => {
+    id = validateProducts.validateId(id)
+    const productExist = await productRepository.findByID(newid)
+
+    if (!productExist){
+      const message = `Product ${id} not found`
+      const status = 404
+      throw({message, status})
+    }
+
+    return productExist
+  },
+
   insertProduct: async (product) => {
     const validation = validateProducts.validateProduct(product)
-    const productExists = await productRepository.findByID(validation.value.id)    
 
     if(validation.error){
       const message = validation.error.details[0].message
@@ -13,43 +26,46 @@ module.exports = {
       throw({message, status})
     }
 
-    if(productExists){
-      const message = `Product with ID ${productExists.id} already exists`
-      const status = 400
+    const newProduct = ProductFactory.create(validation.value)
+    return productRepository.insertProduct(newProduct)
+  },
+
+  updateProduct: async(id, product) =>{
+    id = validateProducts.validateId(id)
+    const validation = validateProducts.validateProduct(product)
+    const productExist = await productRepository.findByID(id)
+
+    if (validation.error || !productExist){
+      const message = validation.error? validation.error.details[0].message : `Product with ID ${id} not found`
+      const status = 404
       throw({message, status})
     }
 
-    const newProduct = ProductFactory.create(validation.value)
-    return productRepository.insertProduct(newProduct)
-    },
+    const result = await productRepository.updateProduct(id, product)
+    return {message: result, status: 200};
+  },
 
-    getProduct: async (id) => {
-      const product = await productRepository.findByID(id)
+  deleteProduct: async(id) =>{
+    id = validateProducts.validateId(id)
+    const productExist = await productRepository.findByID(id)
 
-      if (!product){
-        const message = `Product ${id} not found`
-        const status = 404
-        throw({message, status})
-      }
-      return product
-    },
-    getProductStock: async(id) =>{
-      const product = await productRepository.findByID(id)
-      if (!product){
-        const message = `Product ${id} not found`
-        const status = 404
-        throw({message, status})
-      }
-      return {message: product.stock, status: 201};
-    },
-    addStock: async(id,newStock) =>{
-      const product = await productRepository.addStock(id,newStock)
-      if (!product){
-        const message = `Product ${id} not found`
-        const status = 404
-        throw({message, status})
-      }
-      return {message: product, status: 201};
+    if (!productExist){
+      const message = `Product ${id} not found`
+      const status = 404
+      throw({message, status})
     }
+
+    const result = await productRepository.deleteProduct(id)
+    return {message: result, status: 200};
+  },
+
+  getAllProducts: async() =>{
+    const result = await productRepository.getAllProducts()
+    return result
+  },
+
+
+
+
 }
   

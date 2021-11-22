@@ -1,18 +1,16 @@
 const Joi = require("@hapi/joi")
+const ObjectId = require("mongoose").Types.ObjectId
 
 module.exports = {
     validateProduct: (product) => {
         const schema = Joi.object({
-          id: Joi.number()
-                .required(),
-
           name: Joi.string()
                 .min(3)
                 .max(25)
                 .required(),
   
           stock: Joi.number()
-                .min(5)
+                .min(0)
                 .required(),
   
           type: Joi.string()
@@ -25,7 +23,14 @@ module.exports = {
                 .required(),
         })
  
-        return schema.validate({id: product.id, name: product.name, stock: product.stock, type: product.type, price: product.price})
+        return schema.validate({name: product.name, stock: product.stock, type: product.type, price: product.price})
 
-    } 
+    },
+    
+    validateId(id){   
+      if (id.length != 24){
+            throw({message: `Id ${id} is invalid`})
+      }
+      return new ObjectId(id)
+    }
 } 
