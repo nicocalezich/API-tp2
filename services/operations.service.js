@@ -2,6 +2,7 @@ const operationsRepository = require('../data/operations.data')
 const salesFactory = require('../factories/sale.factory')
 const productService = require('../services/products.services')
 const operationsValidations = require('../validations/operations.validations')
+const customerFactory = require('../factories/customers.factory')
 
 const newSale = async (sale) => {
   const saleInfo = await getSaleInfo(sale.products)
@@ -15,8 +16,9 @@ const newSale = async (sale) => {
     throw ({ message, status })
   }
   await subtractStock(sale.products)
+  //verificar cliente adherido y restar al total si hay descuento
   const newSale = salesFactory.create(validatedSale.value)
-  const result = await operationsRepository.insertNewSale(newSale)
+  await operationsRepository.insertNewSale(newSale)
   return saleInfo.ticket
 }
 
@@ -30,9 +32,9 @@ const getSaleInfo = async (products) => {
     if (!product) throw new Error
     let productTotalCost = product.price * qty
     total += productTotalCost
-    ticket.push({item: product.name, price: product.price, qty, productTotalCost})
+    ticket.push({ item: product.name, price: product.price, qty, productTotalCost })
   }
-  return {total, ticket}
+  return { total, ticket }
 }
 
 const subtractStock = async (products) => {
@@ -49,5 +51,30 @@ const subtractStock = async (products) => {
   }
 }
 
-module.exports = { newSale }
+const createCustomer = async (customer) => {
+  const validation = operationsValidations.validateCustomers(customer)
+  const existingCustomer = await operationsRepository.findByDni(validation.value.dni)
+
+  if (validation.error || existingCustomer) {
+    const message = validation.error ? validation.error.details[0].message : `Customer ${existingCustomer.dni} already exists`
+    const status = 400
+    throw ({ message, status })
+  }
+
+  const newCustomer = customerFactory.create(validation.value)
+  await operationsRepository.insertCustomer(newCustomer)
+  return { message: `Customer with dni ${validation.value.dni} created`, status: 201 };
+}
+
+const getCustomer = async (dni) => {
+  const customer = await operationsRepository.findByDni(dni)
+  if (!customer) {
+    const message = `Customer ${dni} not found`
+    const status = 404
+    throw ({ message, status })
+  }
+  return customer
+}
+
+module.exports = { newSale, createCustomer, getCustomer }
 

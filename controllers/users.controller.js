@@ -22,6 +22,7 @@ const getUser = async (req, res) => {
 
 const login = async (req, res) => {
     try{
+        //validar credenciales
         const isAdmin = true
         const username = req.body.username
         const password = req.body.password
