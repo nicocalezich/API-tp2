@@ -10,6 +10,7 @@ const usersRouter = require('./routes/users.routes');
 const productsRouter = require('./routes/products.routes');
 const operationsRouter = require('./routes/operations.routes');
 const verifyToken = require('./middleware/verifyToken');
+const customersRouter = require('./routes/customer.routes');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', usersRouter);
 app.use('/products', verifyToken, productsRouter);
 app.use('/operations', operationsRouter);
+app.use('/customers', customersRouter);
 
 app.listen(port, () => {
   console.log(`App running at port: ${port}`)
