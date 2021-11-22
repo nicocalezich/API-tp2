@@ -6,7 +6,7 @@ module.exports = {
 
   getProduct: async (id) => {
     id = validateProducts.validateId(id)
-    const productExist = await productRepository.findByID(newid)
+    const productExist = await productRepository.findByID(id)
 
     if (!productExist){
       const message = `Product ${id} not found`

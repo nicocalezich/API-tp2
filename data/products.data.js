@@ -8,7 +8,6 @@ async function findByID(id){
     return searchedProduct;
 }
 
-//revisar, no trae todos los productos
 async function getAllProducts(){
     const connectiondb = await connection.getConnection()
     const searchedProduct = await connectiondb.db('api-db')
