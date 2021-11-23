@@ -5,6 +5,7 @@ const userService = require('../services/users.services')
 const login = async ({ username, password }) => {
     const errorMessage = `Invalid credentials. Try again`
     const user = await userService.getUser(username)
+    console.log(user.password)
     if (!user) {
         throw ({ message: errorMessage, status: 400 })
     }

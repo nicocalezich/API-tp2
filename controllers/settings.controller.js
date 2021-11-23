@@ -6,7 +6,7 @@ const setDiscounts = async (req, res) => {
         res.status(200).send(result)
     }
     catch (error){
-        res.send(400).status(error)
+        res.send(error.message).status(400)
     }
 }
 
