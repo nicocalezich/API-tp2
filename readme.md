@@ -58,7 +58,7 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 * POST /
 
- Se le envia en el body el campo "username" con un String para el nombre de usuario y "password" para la contraseña y devuelve un TOKEN para pasar al Header como auth-token
+ Se le envia en el body el campo "username" con un String para el nombre de usuario y "password" para la contraseña y devuelve un TOKEN para pasar al Header como auth-token.
 
 # /users
 
@@ -84,14 +84,38 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
  Devuelve todos los productos.
 
 * POST /
+
+ Crea un producto nuevo. Se envia en el body:
+  * name: string
+  * stock: number
+  * type: string
+  * price: number
+
 * PUT /:id
+
+ Actualiza un producto. Se le envia en el body:
+  * name: string
+  * stock: number
+  * type: string
+  * price: number
+
 * DELETE /:id
+
+ Elimina un producto. Se le envia el id del producto por parametro.
 
 # /operations
 
 * POST /sale
 * POST /customer
-* GET /customer/:id
+
+ Crea un cliente nuevo. Se le envia en el body:
+  * name: string
+  * dni: number
+  * email: string  
+
+* GET /customer/:dni
+
+ Obtiene un cliente según el DNI enviado como parametro
 
 # /settings
 * POST /discounts
@@ -102,9 +126,14 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 * POST /
 
+ Se le envia en el body el campo "username" con un String para el nombre de usuario y "password" para la contraseña y devuelve un TOKEN para pasar al Header como auth-token.
+
 # /operations
 
 * POST /sale
 * POST /customer
 
-
+ Crea un cliente nuevo. Se le envia en el body:
+  * name: string
+  * dni: number
+  * email: string  
