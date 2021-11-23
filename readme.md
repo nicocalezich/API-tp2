@@ -14,13 +14,11 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 # Reglas de negocio
 
 * Los usuarios del sistema serán los cajeros y el gerente de cada supermercado.
-* Los cajeros cobrarán un x% (que definirá el gerente) de comisión en el caso de superar un n monto (que también definirá el gerente) en ventas en ese mismo día.
 * Los clientes del supermercado que se registren y adhieran en el sistema tendrán acceso a diferentes descuentos y beneficios.
 * Los cajeros se encargaran, en el momento de una venta/cobro de productos, de cargarlos con sus respectivas cantidades al sistema.
 * Luego de producida la venta, se generará un ticket detallando los productos vendidos, la cantidad y precio de los mismos, y el monto total que deberá abonar el cliente.
 * Cada supermercado tendrá un registro de todas las ventas que se hicieron alguna vez en el mismo, detallando todo lo requerido.
-* Los gerentes serán alertados por el sistema en caso de que haya baja cantidad de X producto. La cantidad de “alerta stock” podrá ser modificable por producto.
-* El sistema no podra contar con menos de n cantidad por producto, determinado por el gerente.
+* El gerente determinara el descuento que tendran los clientes adheridos en el total de su compra.
 
 # Funcionalidades
 
@@ -28,9 +26,7 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 1.1 Sistema de autenticación: tanto los cajeros como el gerente se deberán autenticar en el sistema indicando un usuario existente y su contraseña. Cada uno de estos actores tendrá acceso y/o permisos sobre determinadas características del sistema.
 
-1.2 Creación o eliminación de un user: El responsable de poder crear nuevos users (ya sea gerente o cajero) será el gerente. Solo existirán 2 users en el sistema. 1 para el gerente y otro para que lo utilicen los cajeros. A cada user se le asignará un username y una contraseña que se deberá confirmar al crear el user.
-
-1.3 logout: El sistema contará con un logout para cerrar la sesión activa y habrá que volver a hacer login para poder volver a utilizarlo.
+1.2 Creación de user: El responsable de poder crear nuevos users (ya sea gerente o cajero) será el gerente. Solo existirán 2 users en el sistema. 1 para el gerente y otro para cada cajero. A cada user se le asignará un username y una contraseña.
 
 # 2. Proceso de venta
 
@@ -42,25 +38,17 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 # 3. Productos/stock
 
-3.1 Característica de los productos Los productos serán cargados al sistema por el gerente. Al cargarlos, se verificará si el producto no existe (por su nombre), se ingresara su categoría (que podrán ser, comestible, bebida, limpieza, otros), se ingresará la cantidad que exista del producto, su fecha de vencimiento si este es comestible o bebible y se indicará si este contiene algún tipo de descuento vigente (1 - 99 %).
+3.1 Característica de los productos Los productos serán cargados al sistema por el gerente. Al cargarlos, se verificará si el producto no existe (por su nombre), se ingresara su categoría (que podrán ser, comestible, bebida, limpieza, otros), se ingresará la cantidad que exista del producto.
 
 # 4. Adherir compradores
 
-4.1 dar de alta comprador adherido: Si un comprador del supermercado (comprador) lo desea, podrá adherirse al supermercado para obtener beneficios. Para registrar un comprador, se deberá indicar su nombre completo y apellido, DNI, email, fecha de nacimiento y domicilio. Todos los campos deberán validarse y se guardará al comprador adherido.
+4.1 dar de alta comprador adherido: Si un comprador del supermercado (comprador) lo desea, podrá adherirse al supermercado para obtener beneficios. Para registrar un comprador, se deberá indicar su nombre completo y apellido, DNI, email. Todos los campos deberán validarse y se guardará al comprador adherido.
 
-4.2 Eliminar un cliente adherido: Si un comprador del supermercado (comprador) lo desea, podrá solicitar la baja de la adhesión al supermercado, se buscará al comprador por DNI en el registro y se lo eliminará.
-
-4.3 Seteo de beneficios cliente adherido: El gerente será quien podrá setear los beneficios del cliente en el sistema. Por ejemplo, estos contarán con descuentos temporales en determinados productos, para eso el gerente elegirá qué productos son los que poseerán descuento y les asignará el mismo. A la hora de la venta, se indicará en el sistema si el cliente está registrado o no, y se le hará el descuento correspondiente en su compra. Por defecto, el sistema le dará un x% de descuento en cualquier producto el dia del cumpleaños del cliente. ese porcentaje también será seteado por el gerente.
+4.2 Seteo de beneficios cliente adherido: El gerente será quien podrá setear los beneficios del cliente en el sistema. Por ejemplo, estos contarán con descuentos temporales en el total del monto de su compra. A la hora de la venta, se indicará en el sistema si el cliente está registrado o no, y se le hará el descuento correspondiente en su compra. Por defecto. ese porcentaje también será seteado por el gerente.
 
 # 5. Registro general de las ventas
 
-5.1 Registro de venta: Cada venta que el supermercado realice, quedará registrada. Estas no podrán ser eliminadas ni editadas. Los datos de cada venta serán: Los productos que se vendieron y las cantidades, el precio de cada producto y total, la fecha, el nombre del supermercado, y si quien hizo la compra era un cliente registrado o no y el método de pago que utilizó.
-
-# 6. Cajeros
-
-6.1 Seteo de comisiones de cajeros: Al llegar por día a un ingreso x, determinado por el gerente en el sistema, los cajeros contarán con un% de comisión respecto a ese monto, que también determinará el gerente.
-
-6.2 Registro de comisiones: Se registrará por día si se llegó al ingreso x o no, y el % de comisión y la cantidad de dinero que significa para cada uno de los cajeros. Este registro no se podrá eliminar ni editar.
+5.1 Registro de venta: Cada venta que el supermercado realice, quedará registrada. Estas no podrán ser eliminadas ni editadas. Los datos de cada venta serán: Los productos que se vendieron y las cantidades, el precio de cada producto y total, la fecha, y si quien hizo la compra era un cliente registrado o no y el método de pago que utilizó.
 
 # Accesos
 
