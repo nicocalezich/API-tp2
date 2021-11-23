@@ -66,11 +66,14 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 # Rutas habilitadas para usuario administrador
 
+# /login
+
+* POST /
+
 # /users
 
 * GET /:usernamet
 * POST /
-* POST /login
 
 # /products
 
@@ -91,9 +94,9 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 # Rutas habilitadas para usuario cajero
 
-# /users
+# /login
 
-* POST /login
+* POST /
 
 # /operations
 
