@@ -110,6 +110,9 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 # /operations
 
 * POST /sale
+
+Crea una venta. Se le envia en el body: products(array de objetos que contienen id de producto y cantidad), buyer(string que es el dni del cliente), paymentMethod(string forma de pago)
+
 * POST /customer
 
  Crea un cliente nuevo. Se le envia en el body:
@@ -138,6 +141,9 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 # /operations
 
 * POST /sale
+
+Crea una venta. Se le envia en el body: products(array de objetos que contienen id de producto y cantidad), buyer(string que es el dni del cliente), paymentMethod(string forma de pago)
+
 * POST /customer
 
  Crea un cliente nuevo. Se le envia en el body:
