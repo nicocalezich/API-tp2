@@ -70,7 +70,7 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 * GET /:usernamet
 * POST /
-* post /login
+* POST /login
 
 # /products
 
@@ -88,3 +88,16 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 # /settings
 * POST /discounts
+
+# Rutas habilitadas para usuario cajero
+
+# /users
+
+* POST /login
+
+# /operations
+
+* POST /sale
+* POST /customer
+
+
