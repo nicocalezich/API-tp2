@@ -74,8 +74,10 @@ Se envia en el body:
 
 * GET /:id
 Se envia el id del producto a buscar como parametro y devuelve el producto buscado.
+
 * GET /
 Devuelve todos los productos.
+
 * POST /
 * PUT /:id
 * DELETE /:id
