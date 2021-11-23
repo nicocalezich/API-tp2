@@ -66,6 +66,8 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 # Rutas habilitadas para usuario administrador
 
-* /users/:usernamet -> get de usuario, busca por nombre de usuario
-* Realizar endpoint de login y de registro
-* Validar datos ingresados y hacer response, dependiendo el tipo de usuario y si los datos ingresados son correctos o no.
+* GET /users/:usernamet
+* POST /users
+* post /login
+
+*
