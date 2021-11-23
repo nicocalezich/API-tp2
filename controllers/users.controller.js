@@ -20,21 +20,21 @@ const getUser = async (req, res) => {
     }
 }
 
-const login = async (req, res) => {
-    try{
-        const username = req.body.username
-        const password = req.body.password
-        const token = await userService.login({username, password})
-        res.header('auth-token', token).json({
-            error: null,
-            data: {token}
-        })
-    }
-    catch (error){
-        res.status(400).send(error.message)
-    }
-}
+// const login = async (req, res) => {
+//     try{
+//         const username = req.body.username
+//         const password = req.body.password
+//         const token = await userService.login({username, password})
+//         res.header('auth-token', token).json({
+//             error: null,
+//             data: {token}
+//         })
+//     }
+//     catch (error){
+//         res.status(400).send(error.message)
+//     }
+// }
 
 
 
-module.exports = { createUser, getUser, login}
+module.exports = { createUser, getUser }

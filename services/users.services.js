@@ -32,19 +32,19 @@ const bcrypt = require('bcryptjs');
     return user
   }
 
-  const login = async ({ username, password }) => {
-    //validar usuario
-    const user = await getUser(username)
-    if(!user){
-      throw({message: `Invalid credentials. Try again`, status: 400})
-    }
-    const match = await bcrypt.compare(password, user.password)
-    if (!match) {
-      throw({message: `Invalid credentials. Try again`, status: 400})
-    }
-    const isAdmin = user.isAdmin
-    const token = jwt.sign({ username, password, isAdmin }, process.env.TOKEN_SECRET, {expiresIn: '480m'})
-    return token
-  }
+  // const login = async ({ username, password }) => {
+  //   //validar usuario
+  //   const user = await getUser(username)
+  //   if(!user){
+  //     throw({message: `Invalid credentials. Try again`, status: 400})
+  //   }
+  //   const match = await bcrypt.compare(password, user.password)
+  //   if (!match) {
+  //     throw({message: `Invalid credentials. Try again`, status: 400})
+  //   }
+  //   const isAdmin = user.isAdmin
+  //   const token = jwt.sign({ username, password, isAdmin }, process.env.TOKEN_SECRET, {expiresIn: '480m'})
+  //   return token
+  // }
 
-module.exports = { createUser, getUser, login}
+module.exports = { createUser, getUser}

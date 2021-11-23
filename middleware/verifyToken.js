@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken')
-const standarRoutes = ["/hola"]
+const standarRoutes = ["/operations/sale", "/operations/customer"]
 const verifyToken = (req, res, next) => {
     const route = req.originalUrl
+    console.log(route)
     const token = req.header('auth-token')
     if (!token) return res.status(401).json({ error: 'Acceso denegado' })
     try {

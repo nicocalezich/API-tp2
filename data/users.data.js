@@ -1,4 +1,3 @@
-const mongodb = require('mongodb');
 const connection = require('./dbconnection');
 const bcrypt = require('bcryptjs');
 
