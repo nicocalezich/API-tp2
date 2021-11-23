@@ -3,6 +3,7 @@ const salesFactory = require('../factories/sale.factory')
 const productService = require('../services/products.services')
 const operationsValidations = require('../validations/operations.validations')
 const customerFactory = require('../factories/customers.factory')
+const settingsServices = require('../services/settings.services')
 
 const newSale = async (sale) => {
   const saleInfo = await getSaleInfo(sale.products)
@@ -16,10 +17,15 @@ const newSale = async (sale) => {
     throw ({ message, status })
   }
   await subtractStock(sale.products)
-  //verificar cliente adherido y restar al total si hay descuento
+  const customer = await getCustomer(sale.buyer)
+  if(customer){
+    const discount = await settingsServices.getDiscount()
+    let toDiscount = (discount[0].discount * validatedSale.value.total) / 100
+    validatedSale.value.total -= toDiscount
+  }
   const newSale = salesFactory.create(validatedSale.value)
   await operationsRepository.insertNewSale(newSale)
-  return saleInfo.ticket
+  return {ticket: saleInfo.ticket, total: validatedSale.value.total}
 }
 
 const getSaleInfo = async (products) => {
@@ -68,11 +74,6 @@ const createCustomer = async (customer) => {
 
 const getCustomer = async (dni) => {
   const customer = await operationsRepository.findByDni(dni)
-  if (!customer) {
-    const message = `Customer ${dni} not found`
-    const status = 404
-    throw ({ message, status })
-  }
   return customer
 }
 

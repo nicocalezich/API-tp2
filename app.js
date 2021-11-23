@@ -9,6 +9,7 @@ const port = 8080
 const usersRouter = require('./routes/users.routes');
 const productsRouter = require('./routes/products.routes');
 const operationsRouter = require('./routes/operations.routes');
+const settingsRouter = require('./routes/settings.routes');
 const verifyToken = require('./middleware/verifyToken');
 const app = express();
 
@@ -21,6 +22,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/users', usersRouter);
 app.use('/products', verifyToken, productsRouter);
 app.use('/operations', operationsRouter);
+app.use('/settings', settingsRouter);
+
+
 
 app.listen(port, () => {
   console.log(`App running at port: ${port}`)
