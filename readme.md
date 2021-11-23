@@ -57,11 +57,18 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 # /login
 
 * POST /
+Se le envia en el body el campo "username" con un String para el nombre de usuario y "password" para la contraseña y devuelve un TOKEN para pasar al Header como auth-token
 
 # /users
 
-* GET /:usernamet
+* GET /:username
+Se envia un username como parametro y devuelve un user.
+
 * POST /
+Se envia en el body:
+  * username: string
+  * password: string
+  * isAdming: bool
 
 # /products
 
