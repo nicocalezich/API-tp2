@@ -68,7 +68,7 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 * POST /
 
- Se envia en el body:
+ Crea un usuario nuevo.Se envia en el body:
   * username: string
   * password: string
   * isAdming: bool
@@ -78,10 +78,12 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 * GET /:id
 
  Se envia el id del producto a buscar como parametro y devuelve el producto buscado.
+ 
 
 * GET /
 
  Devuelve todos los productos.
+
 
 * POST /
 
@@ -90,6 +92,7 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
   * stock: number
   * type: string
   * price: number
+  
 
 * PUT /:id
 
@@ -98,6 +101,7 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
   * stock: number
   * type: string
   * price: number
+  
 
 * DELETE /:id
 
@@ -112,6 +116,7 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
   * name: string
   * dni: number
   * email: string  
+  
 
 * GET /customer/:dni
 
@@ -119,6 +124,8 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 # /settings
 * POST /discounts
+
+ Se envia un body con el campo "discount" (number) para establecer el descuento para clientes.
 
 # Rutas habilitadas para usuario cajero
 
