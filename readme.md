@@ -65,6 +65,7 @@ Se le envia en el body el campo "username" con un String para el nombre de usuar
 Se envia un username como parametro y devuelve un user.
 
 * POST /
+
 Se envia en el body:
   * username: string
   * password: string
