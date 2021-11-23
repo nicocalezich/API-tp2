@@ -62,10 +62,10 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 
 6.2 Registro de comisiones: Se registrará por día si se llegó al ingreso x o no, y el % de comisión y la cantidad de dinero que significa para cada uno de los cajeros. Este registro no se podrá eliminar ni editar.
 
-# Tareas
+# Accesos
 
-# Login / alta de usuario
+# Rutas habilitadas para usuario administrador
 
-* Realizar esquema de usuarios de la base de datos
+* /users/:usernamet -> get de usuario, busca por nombre de usuario
 * Realizar endpoint de login y de registro
 * Validar datos ingresados y hacer response, dependiendo el tipo de usuario y si los datos ingresados son correctos o no.
