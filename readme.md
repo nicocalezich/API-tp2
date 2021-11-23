@@ -79,3 +79,12 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 * POST /
 * PUT /:id
 * DELETE /:id
+
+# /operations
+
+* POST /sale
+* POST /customer
+* GET /customer/:id
+
+# /settings
+* POST /discounts
