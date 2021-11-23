@@ -69,9 +69,9 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 * POST /
 
  Crea un usuario nuevo.Se envia en el body:
-  * username: string
-  * password: string
-  * isAdming: bool
+  - username: string
+  - password: string
+  - isAdming: bool
 
 # /products
 
@@ -88,19 +88,19 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 * POST /
 
  Crea un producto nuevo. Se envia en el body:
-  * name: string
-  * stock: number
-  * type: string
-  * price: number
+  - name: string
+  - stock: number
+  - type: string
+  - price: number
   
 
 * PUT /:id
 
  Actualiza un producto. Se le envia en el body:
-  * name: string
-  * stock: number
-  * type: string
-  * price: number
+  - name: string
+  - stock: number
+  - type: string
+  - price: number
   
 
 * DELETE /:id
@@ -113,9 +113,9 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 * POST /customer
 
  Crea un cliente nuevo. Se le envia en el body:
-  * name: string
-  * dni: number
-  * email: string  
+  - name: string
+  - dni: number
+  - email: string  
   
 
 * GET /customer/:dni
@@ -141,6 +141,6 @@ Una cadena de supermercados requiere un sistema para su gestión (por cada uno d
 * POST /customer
 
  Crea un cliente nuevo. Se le envia en el body:
-  * name: string
-  * dni: number
-  * email: string  
+  - name: string
+  - dni: number
+  - email: string  
