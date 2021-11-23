@@ -12,7 +12,7 @@ const createUser = async (req, res) => {
 
 const getUser = async (req, res) => {
     try{
-        const result = await userService.getUser(req.params.dni)
+        const result = await userService.getUser(req.params.username)
         res.status(200).send(result)
     }
     catch (error){
@@ -22,11 +22,9 @@ const getUser = async (req, res) => {
 
 const login = async (req, res) => {
     try{
-        //validar credenciales
-        const isAdmin = true
         const username = req.body.username
         const password = req.body.password
-        const token = await userService.login({username, password, isAdmin})
+        const token = await userService.login({username, password})
         res.header('auth-token', token).json({
             error: null,
             data: {token}

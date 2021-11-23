@@ -4,8 +4,8 @@ module.exports = {
     validateUser: (user) => {
         const schema = Joi.object({
           username: Joi.string()
-                    .min(5)
-                    .max(15)
+                    .min(6)
+                    .max(10)
                     .required(),
   
           password: Joi.string()
@@ -14,14 +14,11 @@ module.exports = {
                     .max(30)
                     .required(),
   
-          dni: Joi.number()
-                  .required(),
-  
           isAdmin: Joi.bool()
                   .required()
         })
  
-        return schema.validate({username: user.username, password: user.password, dni: user.dni, isAdmin: user.isAdmin})
+        return schema.validate({username: user.username, password: user.password, isAdmin: user.isAdmin})
 
     } 
 } 

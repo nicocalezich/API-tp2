@@ -3,7 +3,7 @@ const router = express.Router();
 const { createUser, getUser, login } = require('../controllers/users.controller')
 
 /* GET users listing. */
-router.get('/:dni', getUser);
+router.get('/:username', getUser);
 
 router.post('/', createUser)
 

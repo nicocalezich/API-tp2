@@ -14,12 +14,12 @@ async function insertUser(user){
 }
 
 
-async function findByDni(dni){
+async function findByUsername(username){
     const connectiondb = await connection.getConnection();
     const searchedUser = await connectiondb.db('api-db')
                         .collection('users')
-                        .findOne({dni: parseInt(dni)});
+                        .findOne({username: username});
     return searchedUser;
 }
 
-module.exports = {insertUser, findByDni};
+module.exports = {insertUser, findByUsername};
